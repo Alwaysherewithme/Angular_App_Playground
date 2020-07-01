@@ -18,12 +18,16 @@ import { DetailsComponent } from './components/details/details.component';
 // Create routes
 const appRoutes: Routes = [
   {
-    path: '', component: UserComponent
+    path: '',
+    component: UserComponent
   },
   {
-    path: 'boat', component: BoatComponent
+    path: 'boat',
+    component: BoatComponent
   }
-]
+];
+
+// Decorator: convert class into Angular Module(contains multiple components)
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,8 +44,9 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
+  // Dependencies Injection
   providers: [
-    DataService, 
+    DataService,   // Singleton Pattern
     // MailService, 
     {provide: 'mail', useClass: MailService},
     {provide: 'api', useValue: 'localhost:3000/api'}

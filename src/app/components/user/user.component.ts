@@ -12,6 +12,7 @@ export class UserComponent implements OnInit {
   // name:string = 'Neveragain';
   name:string;
   age:number;
+  showAge:boolean;
   email:string;
   /* address:{
     street:string,
@@ -21,10 +22,10 @@ export class UserComponent implements OnInit {
   address:Address;
   hobbies:string[];
   hello:any;
-  posts:Post;
+  posts:Post[];
   isEdit:boolean = false;
 
-  constructor(private dataService_wm: DataService) {
+  constructor(private dataService_wm: DataService) {    // Dependencies Injection
     console.log('constructor ran...');
   }
 
@@ -32,6 +33,7 @@ export class UserComponent implements OnInit {
     console.log('ngOnInit ran...')
     this.name = 'Wenming';
     this.age = 30;
+    this.showAge = false;
     this.email = 'wenming.w.zhou@pwc.com';
     this.address = {
       street: '50 Main st',
@@ -54,14 +56,15 @@ export class UserComponent implements OnInit {
 
   addHobby(hobby) {
     console.log(hobby);
+    // this.hobbies.push(hobby);
     this.hobbies.unshift(hobby);
     return false;
   }
 
-  deleteHobby(hobby) {
-    console.log(hobby);
+  deleteHobby(hobby_id) {
+    console.log(hobby_id);
     for(let i=0; i<this.hobbies.length; i++) {
-      if(this.hobbies[i] == hobby) {
+      if(this.hobbies[i] == hobby_id) {
         this.hobbies.splice(i, 1);
       }
     }
@@ -71,6 +74,9 @@ export class UserComponent implements OnInit {
     this.isEdit = !this.isEdit;
   }
 
+  toggleAgeShow() {
+    this.showAge = !this.showAge
+  }
 }
 
 // create a class or interface here or inside another file and import

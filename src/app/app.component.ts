@@ -1,13 +1,14 @@
 import { Component, Inject } from '@angular/core';
 // import { MailService } from './services/mail.service';
 
+// Decorator: convert class into Angular Component
 @Component({
-  selector: 'app-root',
+  selector: 'app-root',   // CSS selector
   templateUrl: './app.component.html',
   // styleUrls: ['./app.component.css']
   /*template: `<div>
-    <h2>1. Hello Angular!</h2>
-    <h2>2. Create a Simple Angular 2 Component</h2>
+    <h2>1. (String Interpolation): Hello {{ title + "!"}}</h2>
+    <h2>2. Create a Simple {{ getTitle() }} 2 Component</h2>
     <h2>3. Manage Angular 2 Events with Events and Refs</h2>
     <h2>4. Control Angular 2 Events with $event and Event Handlers</h2>
     <app-simple-form></app-simple-form>
@@ -15,7 +16,7 @@ import { Component, Inject } from '@angular/core';
     <p>{{ wmMail.message }}</p>
     <h2>6. Provide and Share Values with Angular 2 Dependency Injection</h2>
     <p>{{ wmAPI }}</p>
-    <h2>7. Loop Through Angualr 2 Components with ngFor</h2>
+    <h2>7. (Directives): Loop Through Angualr 2 Components with ngFor</h2>
     <ul>
       <li *ngFor="let msg of wmMail.message">
         {{ msg }}
@@ -92,5 +93,9 @@ export class AppComponent {
   onModify(id, text) {
     // console.log(event)
     this.wmMail.modify(id, text)
+  }
+
+  getTitle() {
+    return this.title
   }
 }

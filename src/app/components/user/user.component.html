@@ -41,7 +41,8 @@
 <h3>User detail:</h3>
 <ul>
   <li>Name: <ins> {{ name }} </ins></li>
-  <li>Age: {{ age }}</li>
+  <button (click)="toggleAgeShow()">{{ showAge ? "Hide Age":"Show Age"}}</button>
+  <li *ngIf="showAge">Age: {{ age }}</li>
   <li>Email: {{ email }}</li>
   <li>Address: {{ address.street }},{{ address.city }},{{ address.state }}</li>
   <li>Hobbies:
@@ -50,7 +51,7 @@
       <input type="text" placeholder="put enter key" #hobby />
     </form>
     <ul>
-      <li *ngFor="let hobby of hobbies; let i = index">{{ i+1 }}:{{ hobby }} <button (click)="deleteHobby(hobby)">X</button></li>
+      <li *ngFor="let hobby of hobbies; let i = index">{{ i+1 }}:{{ hobby }} <button (click)="deleteHobby(hobby_id)">X</button></li>
     </ul>
   </li>
   <li>Posts:

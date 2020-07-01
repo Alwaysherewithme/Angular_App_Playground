@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AngularJS Tutorial</title>
+	<style type="text/css">
+		span {
+			color: red;
+		}
+
+		input#tag-1.ng-invalid {
+			background-color: lightblue;
+		}
+
+		table, th, td {
+			border: 1px solid grey;
+			border-collapse: collapse;
+			padding: 5px;
+		}
+
+		table tr:nth-child(odd) {
+			background-color: #f1f1f1;
+		}
+
+		table tr:nth-child(even) {
+			background-color: #ffffff;
+		}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.min.js"></script>
+</head>
+<body>
+	<h1>AngularJS Tutorial</h1>
+	<a href="https://www.w3schools.com/angular/default.asp">W3Schools</a>
+	<div>
+		<p>AngularJS is a JavaScript framework. It can be added to an HTML page with a &lt;script&gt; tag.</p>
+		<p>AngularJS extends HTML attributes with Directives, and binds data to HTML with Expressions.</p>
+	</div>
+
+	<div ng-app="myApp" ng-init="myCol='lightblue';quantity=2;cost=5;salary=2000;days=30;givenName='John';familyName='Doe';city='New York';country='US';emailAddress='john_doe@gmail.com';person={age:20,gender:'male'};points=[1,15,19,2,40];mySwitch=true;" ng-controller="myCtrl">
+		<h3>AngularJS Expressions</h3>
+
+		<p>My first expression: <span>{{ 5 + 50 }}</span></p>
+		<input style="background-color: {{ myCol }}" ng-model="myCol" />
+		<p>Total cost in dollar: <span>{{ quantity*cost }}</span></p>
+		<p>Total salary in dollar: <span ng-bind="salary*days"></span></p>
+		<p>The full name is <span>{{ givenName + ' ' + familyName }}</span></p>
+		<p>The initialized residence is <span ng-bind="city + ' ' + countryresiden"></span></p>
+		<p>The person is <span>{{ person.age }}</span> years old, and gender is <span ng-bind="person.gender"></span></p>
+		<p>The third element in points array is <span>{{ points[2] }}</span>, and the last is <span ng-bind="points[points.length-1]"></span></p>
+	
+
+
+		<h3>AngularJS Modules</h3>
+
+		<p>Full Name:<span>{{ firstName + " " + lastName }}</span></p>
+
+		<h3>AngularJS Directives</h3>
+		<p>AngularJS lets you extend HTML with new attributes called Directives, it has a set of built-in directives which offers functionality to your applications. It also lets you define your own directives.</p>
+		<label>Built-in Directives:</label>
+		<ul>
+			<li>ng-app</li>
+			<li>ng-init</li>
+			<li>ng-model</li>
+			<li>ng-repeat</li>
+			<li>...</li>
+		</ul>
+
+		<label>Customized Directives:</label>
+		<p>Invoke customized directives by: element name(restrict: "E"), attribute(restrict: "A"), class(restrict: "C"), comment(restrict: "M"), and by default the value is "EA".</p>
+		<wm-test-directive></wm-test-directive>
+		<div wm-test-directive></div>
+		<div class="wm-test-directive"></div>
+		<!-- directive: wm-test-directive -->
+
+
+		<h3>AngularJS Model</h3>
+		<label>Job:</label><input ng-model="job" />
+		<p>Expected Job: <span>{{ job }}</span></p>
+		<p>Enter your e-mail address in the input field. AngularJS will display an errormessage if the address is not an e-mail.</p>
+
+		<form name="myForm">
+			<div>
+				<label>Email:</label>
+				<input type="email" name="myEmail" ng-model="text" />
+				<span ng-show="myForm.myEmail.$error.email">Invalid email address!</span>
+			</div>
+			<div>
+				<label>Contact:</label>
+				<input type="email" name="myContact" ng-model="emailAddress" required />
+				<p>Edit the contact, and try to change the status.</p>
+				<h5>Status</h5>
+				<p>Valid: {{myForm.myContact.$valid}} (if true, the value meets all criteria).</p>
+				<p>Dirty: {{myForm.myContact.$dirty}} (if true, the value has been changed).</p>
+				<p>Touched: {{myForm.myContact.$touched}} (if true, the field has been in focus).</p>
+			</div>
+			<div>
+				<label>Motto</label>
+				<input id="tag-1" ng-model="unknown" required />
+				<p>Edit the text field and it will get/lose classes according to the status.</p>
+				<p><b>Note:</b> A text field with the "required" attribute is not valid when it is empty.</p>
+				<p><a href="https://www.w3schools.com/angular/angular_model.asp">For More</a></p>
+			</div>
+		</form>
+		
+		<h3>AngularJS Data Binding</h3>
+		<p ng-click="changeJob()"><strong>Click</strong> to change job: <span>{{ job }}</span></p>
+		
+		<h3>AngularJS Controllers</h3>
+		<ul>
+			<li>AngularJS controllers control the data of AngularJS applications.</li>
+			<li>AngularJS controllers are regular JavaScript Objects, created by a standard JavaScript object constructor.</li>
+			<li>The ng-controller directive defines the application controller.</li>
+		</ul>
+		<p>Whole Name: <span>{{ wholeName() }}</span></p>
+
+		<h3>AngularJS Scopes</h3>
+		<ul>
+			<li>The scope(model) is the binding part between the HTML (view) and the JavaScript (controller).</li>
+			<li>The scope is an object with the available properties and methods.</li>
+			<li>The scope is available for both the view and the controller.</li>
+			<li>All applications have a $rootScope which is the scope created on the HTML element that contains the ng-app directive.</li>
+			<li>The rootScope is available in the entire application.</li>
+			<li>If a variable has the same name in both the current scope and in the rootScope, the application uses the one in the current scope.</li>
+		</ul>
+
+		<h3>AngularJS Filters</h3>
+
+		<p>Looping with objects:</p>
+		<ul>
+		  <li ng-repeat="x in names | orderBy:'country'">
+		    {{ x.name + ', ' + x.country }}
+		  </li>
+		</ul>
+
+		<p>Display uppercase:</p>
+		<ul>
+		  <li ng-repeat="x in names">
+		    {{ x.name | uppercase }}
+		  </li>
+		</ul>
+
+		<p>Return the names that contains the letter 'i'(also 'I'):</p>
+		<ul>
+		  <li ng-repeat="x in names | filter : 'i'">
+		    {{ x.name }}
+		  </li>
+		</ul>
+
+		<p>The list will only consists of names matching the filter.</p>
+		<p><input type="text" placeholder="case ignore!" ng-model="test"></p>
+		<ul>
+		  <li ng-repeat="x in names | filter:test">
+		    {{ x.name }}
+		  </li>
+		</ul>
+
+		<p>Customize your own filters</p>
+		<ul>
+			<li ng-repeat="x in names">
+			    {{x.name | myFormat}}
+			</li>
+		</ul>
+
+		<h3>AngularJS Tables</h3>
+		<div>
+			<table border="1" width="100%">
+				<tr>
+					<th>Index</th>
+					<th ng-click="orderByMe('name')">Name</th>
+					<th ng-click="orderByMe('country')">Country</th>
+				</tr>
+				<tr ng-repeat="x in names | orderBy:myOrderBy">
+					<td>{{ $index + 1 }}</td>
+					<td>{{ x.name }}</td>
+					<td ng-if="$odd" style="color: red;">{{ x.country }}</td>
+					<td ng-if="$even">{{ x.country }}</td>
+				</tr>
+			</table>
+		</div>
+
+
+		<h3>AngularJS Services</h3>
+		<p>In AngularJS, a service is a function, or object, that is available for, and limited to, your AngularJS application.AngularJS has about 30 built-in services. AngularJS constantly supervises your application, and for it to handle changes and events properly, AngularJS prefers that you use the $location service instead of the window.location object.</p>
+		<label>Built-in Services:</label>
+		<ul>
+			<li>$location</li>
+			<li>$http</li>
+			<li>$timeout</li>
+			<li>$interval</li>
+			<li>...</
+		</ul>
+		<label>Customized Services</label>
+		<p>Use customized service to calculate the hexadecimal value of 255: <span>{{ hex }}</span></p>
+		<p>Use a custom service inside a filter.</p>
+		<pre>
+			app.filter('myFormat', ['hexafy', function(hexafy) {
+				return function(x) {
+					return hexafy.myFunc(x);
+				}
+			}]);
+
+			&lt;ul&gt;
+				&lt;li ng-repeat="x in counts"&gt;{{x | myFormat}}&lt;/li&gt;
+			&lt;/ul&gt;
+		</pre>
+
+		<h3>AngularJS Services</h3>
+
+
+		<h3>AngularJS Select</h3>
+		<label>Hobbies:</label>
+		<select ng-model="wmSelectedHobby" ng-options="x for x in hobbies"></select>
+		<p>You selected the hobby: <span>{{ wmSelectedHobby }}</span></p>
+
+		<label>Programming:</label>
+		<select ng-model="wmSelectedProgramming">
+			<option ng-repeat="x in programming">{{ x }}</option>
+		</select>
+		<p>You selected the progrmming: <span>{{ wmSelectedProgramming }}</span></p>
+
+		<h4>ng-options VS ng-repeat</h4>
+		<p>Dropdowns made with ng-options allows the selected value to be an object, while dropdowns made from ng-repeat has to be a string.</p>
+
+		<select ng-model="wmSelectedCarWithngrepeat">
+			<option ng-repeat="x in cars" value="{{x.model}}">{{ x.model }}</option>
+		</select>
+		<p>You selected the car: <span>{{ wmSelectedCarWithngrepeat }}</span></p>
+
+		<select ng-model="wmSelectedCarWithngoptions" ng-options="x.model for x in cars"></select>
+		<p>You selected the car: <span>{{ wmSelectedCarWithngoptions.model }}</span>, and its color is <span>{{ wmSelectedCarWithngoptions.color }}</span></p>
+
+		<h4>The Data Source as an Object</h4>
+		<select ng-model="wmSelectedLanguage" ng-options="x for (x, y) in languages"></select>
+		<p>You selected the language: <span>{{ wmSelectedLanguage }}</span></p>
+
+		<select ng-model="wmSelectedMovieKey" ng-options="x for (x, y) in movies"></select>
+		<p>You selected the movie: <span>{{ wmSelectedMovieKey.name }}</span>, showed on year <span>{{ wmSelectedMovieKey.year }}</span></p>
+
+		<select ng-model="wmSelectedMovieValue" ng-options="y.name for (x, y) in movies"></select>
+		<p>You selected the movie: <span>{{ wmSelectedMovieValue.name }}</span>, showed on year <span>{{ wmSelectedMovieValue.year }}</span></p>
+
+		<h3>AngularJS SQL</h3>
+		<ul>
+			<li>Fetching data from PHP/ASP.NET server running SQL</li>
+			<li>Cross-site HTTP requests ("Access-Control-Allow-Origin: *")</li>
+		</ul>
+
+		<h3>AngularJS HTML DOM</h3>
+		<label>The ng-disabled Directive:</label>
+		<p>
+			<button ng-disabled="mySwitch">Click Me</button>
+		</p>
+		<p>
+			<input type="checkbox" ng-mode="mySwitch" />Button
+		</p>
+		<p>{{ mySwitch }}</p>
+
+		<label>The ng-show Directive:</label>
+		<p ng-show="true">I am visible.</p>
+		<p ng-show="false">I am not visible.</p>
+		<p ng-show="days > 20">I am also visible.</p>
+
+		<label>The ng-hide Directive:</label>
+		<p ng-hide="true">I am hidden.</p>
+		<p ng-hide="false">I am not hidden.</p>
+
+
+		<h3>AngularJS Events</h3>
+		<ul>
+			<li>The AngularJS event directives allows us to run AngularJS functions at certain user events.</li>
+			<li>An AngularJS event will not overwrite an HTML event, both events will be executed.</li>
+		</ul>
+		
+		<label>Mouse Events:</label>
+		<h4 ng-mousemove="count = count + 1">Mouse over me! (count = count + 1)</h4>
+		<p>count: <span>{{ count }}</span></p>
+
+		<label>The ng-click Directive:</label>
+		<div>
+			<button ng-click="count = count - 1">(count = count - 1)</button>
+			<button ng-click="myClickFunc()">(count = count * 2)</button>
+		</div>
+
+		<label>Toggle, True/False:</label>
+		<div>
+			<button ng-click="myToggle()">Toggle</button>
+			<ul ng-show="showToggle">
+				<li>Pizza</li>
+				<li>Pasta</li>
+				<li>Pesce</li>
+			</ul>
+		</div>
+
+		<label>$event Object:</label>
+		<h4 ng-mouseover="coordinator($event)">Mouse over me! (coordinate)</h4>
+		<p>
+			Coordinates: <span>{{ row+ ", " +column }}</span>
+		</p>
+
+		<h3>AngularJS Forms</h3>
+		<p>Forms in AngularJS provides data-binding and validation of input controls(input, select, button, textarea elements).</p>
+
+		<div>
+			<p>The novalidate attribute is new in HTML5. It disables any default browser validation.</p>
+			<form novalidate>
+				<div>
+				  	<label>Author:<label>
+				    <input type="text" ng-model="author" />
+				    <p>Author: {{author}}</p>
+				</div>
+				<div>
+					<label>Check to show a header:</label>
+					<input type="checkbox" ng-model="wmCheckedBox" />
+					<h5 ng-show="wmCheckedBox">My Header</h5>
+				</div>
+  				<div>
+  					<label>Pick a capital:</label>
+  					<input type="radio" ng-model="wmRadio" value="ny">New York
+  					<input type="radio" ng-model="wmRadio" value="ty">Tokyo
+  					<input type="radio" ng-model="wmRadio" value="ld">London
+  				</div>
+  				<div ng-switch="wmRadio">
+  					<div ng-switch-when="ny">
+  						<h5>New York</h5>
+  						<span>US</span>
+  					</div>
+  					<div ng-switch-when="ty">
+  						<h5>Tokyo</h5>
+  						<span>JP</span>
+  					</div>
+  					<div ng-switch-when="ld">
+  						<h5>London</h5>
+  						<span>UK</span>
+  					</div>
+  				</div>
+  				<div>
+  					<label>Select an anmial:</label>
+  					<select ng-model="wmSelectedAnimal">
+  						<option value="">
+  						<option value="dogs">Dogs
+  						<option value="fishes">Fishes
+  						<option value="cats">Cats
+  					</select>
+  					<div ng-switch="wmSelectedAnimal">
+  						<div ng-switch-when="dogs">
+  							<h5>Dogs</h5>
+  						</div>
+  						<div ng-switch-when="fishes">
+  							<h5>Fishes</h5>
+  						</div>
+  						<div ng-switch-when="cats">
+  							<h5>Cats</h5>
+  						</div>
+  					</div>
+  				</div>
+  				<div>
+  					<label>First Name:</label>
+  					<input type="text" ng-model="user.firstName"><br>
+  					<label>Last Name:</label>
+  					<input type="text" ng-model="user.lastName">
+  					<br><br>
+  					<button ng-click="reset()">RESET</button>
+  				</div>
+  			</form>
+  			<p>form = {{user}}</p>
+  			<p>master = {{master}}</p>
+  		</div>
+
+
+
+
+
+		<h3>AngularJS API</h3>
+		<p>The AngularJS Global API is a set of global JavaScript functions for performing a common tasks like: comparing objects, iterating objects, converting data.</p>
+
+		<p>Raw value: <span>{{ wmRaw }}</span></p>
+		<p>Lower Case: <span>{{ wmLowercase }}</span></p>
+		<p>Upper Case: <span>{{ wmUppercase }}</span></p>
+		<p>Is String: <span>{{ wmIsString }}</span></p>
+		<p>Is Nubmer: <span>{{ wmIsNumber }}</span></p>
+
+
+
+
+
+
+	</div>
+
+
+
+	<script>
+		var app = angular.module('myApp', []);
+
+		app.run(function($rootScope) {
+			$rootScope.myScope = 'Root Scope';
+		})
+
+		app.directive('wmTestDirective', function() {   // camel case!!!
+			return {
+				restrict: 'EACM',   // be abled to invoke the directive from a element, attribute, class, comment
+				replace: true,   // make the comment visible
+				template: "<i>Wm Test Directive!</i>"
+			};
+		});
+
+		app.filter('myFormat', function() {
+		    return function(x) {
+		        var i, c, txt = "";
+		        for (i = 0; i < x.length; i++) {
+		            c = x[i].name;
+		            if (i % 2 == 0) {
+		                c = c.toUpperCase();
+		            }
+		            txt += c;
+		        }
+		        return txt;
+		    };
+		});
+
+		// app.service('hexafy', function() {
+		// 	this.myFunc = function(x) {
+		// 		return x.toString(16);
+		// 	}
+		// });
+
+		app.controller('myCtrl', function($scope) {
+			$scope.firstName = "John";
+			$scope.lastName = "Doe";
+			$scope.job = "Developer";
+			$scope.changeJob = function() {
+				$scope.job = "Designer";
+			};
+			$scope.wholeName = function() {
+				return $scope.firstName + " " + $scope.lastName;
+			};
+			$scope.myScope = "Current Scope";
+			$scope.count = 0;
+			$scope.myClickFunc = function() {
+				$scope.count *= 2;
+			};
+			$scope.showToggle = false;
+			$scope.myToggle = function() {
+				$scope.showToggle = !$scope.showToggle;
+			};
+			$scope.coordinator = function(wmE) {
+				$scope.row = wmE.clientX;
+				$scope.column = wmE.clientY;
+			};
+
+			$scope.hobbies = ["Traveling", "Swimming", "Gaming", "Reading"];
+			$scope.programming = ["JavaScript", "Python", "Java", "C++"];
+			$scope.cars = [
+				{model : "Ford Mustang", color : "red"},
+				{model : "Fiat 500", color : "white"},
+				{model : "Volvo XC90", color : "black"}
+			];
+			$scope.languages = {
+				lang1: "English",
+				lang2: "French",
+				lang3: "Chinese",
+				lang4: "Japanese"
+			};
+			$scope.movies = {
+				movie1: { name: "2012", year: 2010 },
+				movie2: { name: "Only Yesterday", year: 1990 },
+				movie3: { name: "My 1919", year: 1987 }
+			};
+		    $scope.names = [
+		        {name:'jani',country:2},
+		        {name:'Carl',country:NaN},
+		        {name:'Margareth',country:'england'},
+		        {name:'Hege',country:0},
+		        {name:'Joe',country:-1},
+		        {name:'Gustav',country:'Sweden'},
+		        {name:'Birgit',country:'Denmark'},
+		        {name:'mary',country:false},
+		        {name:'KaI',country:true}
+		        ];
+		    $scope.orderByMe = function(x) {
+		    	$scope.myOrderBy = x;
+		    };
+
+		    $scope.x1 = undefined;   // null, '', ' '
+		    $scope.x2 = angular.isString($scope.x1);
+		    $scope.wmRaw = 'AbCdEfG';
+		    $scope.wmLowercase = angular.lowercase($scope.wmRaw);
+		    $scope.wmUppercase = angular.uppercase($scope.wmRaw);
+		    $scope.wmIsString = angular.isString($scope.wmRaw);
+		    $scope.wmIsNumber = angular.isNumber($scope.wmRaw);
+		    // $scope.hex = hexafy.myFunc(255);
+		});
+
+		
+		
+	</script>
+
+	<pre>
+	/**
+	Application explained:
+
+	(1) The AngularJS application is defined by  ng-app="myApp". The application runs inside the &lt;div&gt;.
+	(2) The ng-controller="myCtrl" attribute is an AngularJS directive. It defines a controller.
+	(3) The myCtrl function is a JavaScript function.
+	(4) AngularJS will invoke the controller with a $scope object. In AngularJS, $scope is the application object (the owner of application variables and functions).
+	(5) The controller creates two properties (variables) in the scope (firstName and lastName).
+	(6) The ng-model directives bind the input fields to the controller properties (firstName and lastName).
+	*/
+	</pre>
+
+</body>
+</html>
